@@ -32,31 +32,31 @@ export default function Footer() {
                     </View>
                 </View>
             </View>
-            
+
             <View style={styles.footer}>
                 <Text style={styles.footerText}>
                     Copyright © 2024 | Design by Dulanjali Ariyarathna | All Rights Reserved
                 </Text>
-                <Text>Dulanjali Ariyarathna</Text>
-                <Text>dulanjiariyarathna@gmail.com</Text>
+                <Text style={{ fontWeight: 'bold', color: 'white' ,fontSize:12}}>Dulanjali Ariyarathna</Text>
+                <Text style={{ fontWeight: 'bold', color: 'white' ,fontSize:12}}>dulanjiariyarathna@gmail.com</Text>
             </View>
-          
+
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#F0F0F0',
-        paddingVertical: 10,
-        paddingHorizontal: 10,
-      
+       
+      height:120
     },
     contactContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-      
+        justifyContent: 'center',
+        gap:10,
+       padding:15,
+        backgroundColor: '#707B7C  '
+
     },
     contactItem: {
         flexDirection: 'row',
@@ -69,21 +69,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     footer: {
-      
-      Width:'100%',
-        backgroundColor: '#5F6A6A',
+
+        Width: '100%',
+        backgroundColor: 'black',
         padding: 5,
         alignItems: 'center',
     },
     footerText: {
-
-        fontSize:12,
+        fontWeight: 'bold',
+        fontSize: 12,
         color: 'white',
-       
+
     },
     image: {
         width: 20,
         height: 20,
     },
-    
+
 });

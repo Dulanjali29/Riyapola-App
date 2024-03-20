@@ -51,7 +51,7 @@ export default function Registration() {
                         style={styles.button}
                         text="Sign Up"
                         textColor="white"
-                        buttonColor="#281C65"
+                        buttonColor="#873600"
                         onPress={signUp}
                     />
                 </View>
@@ -61,7 +61,7 @@ export default function Registration() {
                         <TouchableOpacity>
                             <Text
                                
-                                style={{ color: '#C39BD3', marginTop: 10 ,marginBottom:20,fontSize:20}}
+                                style={{ color: '#E59866', marginTop: 10 ,marginBottom:20,fontSize:20}}
                                 onPress={signin} > Sign In</Text>
                         </TouchableOpacity>
 
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 700,
+        height: 720,
     },
     overlay: {
         marginTop: 180,
