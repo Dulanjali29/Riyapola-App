@@ -12,8 +12,9 @@ export default function Login({navigation}) {
       navigation.navigate('Registration') 
     }
     const signIn = () => {
-       
+     
     }
+    
   return (
     <ScrollView contentContainerStyle={styles.container}>
             <ImageBackground source={require('../../assets/login2.jpg')} style={styles.imageBackground}>

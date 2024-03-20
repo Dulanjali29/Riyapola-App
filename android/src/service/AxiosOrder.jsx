@@ -5,7 +5,7 @@ import axios from "axios";
 let cachedToken = null;
 
 const instance = axios.create({
-  baseURL: 'https://test.acpt.lk/api',
+  baseURL: 'http://192.168.8.130:8080/customer',
   headers: {
     Authorization: cachedToken ? `Bearer ${cachedToken}` : ''
   }
