@@ -11,15 +11,15 @@ export default function Registration() {
     const [password, setPassword] = useState("");
 
     const signUp = () => {
-        // Implement your sign-up logic here
+       
     }
     const signin = () => {
-        // Implement your sign-up logic here
+       
     }
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <ImageBackground source={require('../../assets/homeBack.jpg')} style={styles.imageBackground}>
+            <ImageBackground source={require('../../assets/registerBack.jpg')} style={styles.imageBackground}>
                 <View style={styles.overlay}>
                     <Text style={styles.header}>Customer Registration</Text>
                     <InputText

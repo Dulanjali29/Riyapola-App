@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         gap:10,
        padding:15,
-        backgroundColor: '#707B7C  '
+        backgroundColor: '#707B7C'
 
     },
     contactItem: {

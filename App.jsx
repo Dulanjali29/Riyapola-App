@@ -8,8 +8,8 @@ export default function App() {
   return (
     <PaperProvider>
      <View>
-      <Registration/>
-
+      {/* <Registration/> */}
+<Login/>
     </View>
   </PaperProvider>
    
