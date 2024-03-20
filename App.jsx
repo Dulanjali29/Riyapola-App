@@ -13,13 +13,16 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
- <Stack.Navigator>
- <Stack.Screen name="CarCard" component={CarCard} />
-      <Stack.Screen name="Registration" component={Registration} />
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Navigator>
       <Stack.Screen name="DrawerNav" component={DrawerNav} />
+      <Stack.Screen name="Login" component={Login} />
+       
+        <Stack.Screen name="CarCard" component={CarCard} />
+        <Stack.Screen name="Registration" component={Registration} />
      
-    </Stack.Navigator>
+
+
+      </Stack.Navigator>
     </NavigationContainer>
 
   )

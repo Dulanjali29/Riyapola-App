@@ -36,7 +36,7 @@ export default function Login({navigation}) {
                     />
                     <MyButton
                         style={styles.button}
-                        text="Sign Up"
+                        text="Sign In"
                         textColor="white"
                         buttonColor="#5B2C6F"
                         onPress={signIn}
