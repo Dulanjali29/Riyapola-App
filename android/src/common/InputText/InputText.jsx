@@ -2,13 +2,14 @@
 import React from 'react'
 import { TextInput } from 'react-native-paper';
 
-export default function InputText({lable,value,onChangeText,secureTextEntry,style}) {
+export default function InputText({label,value,onChange,secureTextEntry,style}) {
   return (
     <TextInput
     mode='outlined'
-     label={lable}
+ 
+     label={label}
      value={value}
-     onChangeText={onChangeText}
+     onChange={onChange}
      secureTextEntry={secureTextEntry}
      style={style}
      

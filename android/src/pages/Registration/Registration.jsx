@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView }
 import React, { useState } from 'react';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
+import Footer from '../../common/Footer/Footer';
 
 export default function Registration() {
     const [firstName, setFirstName] = useState("");
@@ -10,6 +11,9 @@ export default function Registration() {
     const [password, setPassword] = useState("");
 
     const signUp = () => {
+        // Implement your sign-up logic here
+    }
+    const signin = () => {
         // Implement your sign-up logic here
     }
 
@@ -21,26 +25,26 @@ export default function Registration() {
                     <InputText
                         style={styles.input}
                         value={firstName}
-                        label="First Name"
-                        onChangeText={(val) => setFirstName(val)}
+                        label={'First Name'}
+                        onChange={(val) => setFirstName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={lastName}
-                        label="Last Name"
-                        onChangeText={(val) => setLastName(val)}
+                        label={'Last Name'}
+                        onChange={(val) => setLastName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={userName}
-                        label="User Name"
-                        onChangeText={(val) => setUserName(val)}
+                        label={'User Name'}
+                        onChange={(val) => setUserName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={password}
-                        label="Password"
-                        onChangeText={(val) => setPassword(val)}
+                        label={'Password'}
+                        onChange={(val) => setPassword(val)}
                         secureTextEntry
                     />
                     <MyButton
@@ -51,7 +55,25 @@ export default function Registration() {
                         onPress={signUp}
                     />
                 </View>
+                <View style={styles.text} >
+                    <Text style={{color:'white'}} >Already have an account ? </Text>
+                    <View>
+                        <TouchableOpacity>
+                            <Text
+                               
+                                style={{ color: '#C39BD3', marginTop: 10 ,marginBottom:20,fontSize:20}}
+                                onPress={signin} > Sign In</Text>
+                        </TouchableOpacity>
+
+
+                    </View>
+
+
+                </View>
             </ImageBackground>
+            <View>
+                <Footer />
+            </View>
         </ScrollView>
     );
 }
@@ -68,7 +90,7 @@ const styles = StyleSheet.create({
         height: 700,
     },
     overlay: {
-        
+        marginTop: 180,
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 20,
     },
@@ -76,9 +98,9 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginBottom: 20,
+        marginBottom: 30,
         color: 'white',
-       
+
     },
     input: {
         marginBottom: 10,
@@ -87,4 +109,9 @@ const styles = StyleSheet.create({
         marginTop: 20,
         marginBottom: 20,
     },
+    text: {
+        alignItems: 'center',
+      
+
+    }
 });
