@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="DrawerNav" component={DrawerNav} />
+      {/* <Stack.Screen name="DrawerNav" component={DrawerNav} /> */}
       <Stack.Screen name="Login" component={Login} />
        
         <Stack.Screen name="CarCard" component={CarCard} />

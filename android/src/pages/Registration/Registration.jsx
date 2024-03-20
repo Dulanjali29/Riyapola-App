@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
+import instance from'../../service/AxiosOrder';
 
 export default function Registration({navigation}) {
     const [firstName, setFirstName] = useState("");
@@ -11,7 +12,24 @@ export default function Registration({navigation}) {
     const [password, setPassword] = useState("");
 
     const signUp = () => {
-     
+        instance.post('/customerRegister', {
+            firstName: firstName,
+            lastName: lastName,
+            userName:userName,
+             password: password,
+ 
+         })
+             .then(function (response) {
+       
+                 console.log(" User Registration Successfull");
+                 navigation.navigate('Login');
+                
+             })
+             .catch(function (error) {
+ 
+                 console.log(error);
+             })
+     }
     const signin = () => {
        navigation.navigate('Login')
     }
@@ -25,25 +43,25 @@ export default function Registration({navigation}) {
                         style={styles.input}
                         value={firstName}
                         label={'First Name'}
-                        onChange={(val) => setFirstName(val)}
+                        onChangeText={(val) => setFirstName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={lastName}
                         label={'Last Name'}
-                        onChange={(val) => setLastName(val)}
+                        onChangeText={(val) => setLastName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={userName}
                         label={'User Name'}
-                        onChange={(val) => setUserName(val)}
+                        onChangeText={(val) => setUserName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={password}
                         label={'Password'}
-                        onChange={(val) => setPassword(val)}
+                        onChangeText={(val) => setPassword(val)}
                         secureTextEntry
                     />
                     <MyButton
