@@ -4,17 +4,17 @@ import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 
-export default function Registration() {
+export default function Registration({navigation}) {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
 
     const signUp = () => {
-       
+      
     }
     const signin = () => {
-       
+        navigation.navigate('Login')
     }
 
     return (
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 720,
+        height: 675,
     },
     overlay: {
         marginTop: 180,

@@ -9,7 +9,7 @@ export default function Login({navigation}) {
     const [password, setPassword] = useState("");
     
     const signUp = () => {
-    //   navigation.navigate('Login') 
+      navigation.navigate('Registration') 
     }
     const signIn = () => {
        
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 720,
+        height: 680,
     },
     overlay: {
         marginTop: 350,
