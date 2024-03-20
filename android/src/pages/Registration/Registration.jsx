@@ -11,10 +11,10 @@ export default function Registration({navigation}) {
     const [password, setPassword] = useState("");
 
     const signUp = () => {
-      
+       
     }
     const signin = () => {
-        navigation.navigate('Login')
+       navigation.navigate('Login')
     }
 
     return (
