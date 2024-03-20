@@ -4,6 +4,7 @@ import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from '../../service/AxiosOrder';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Login({ navigation }) {
@@ -14,29 +15,33 @@ export default function Login({ navigation }) {
         navigation.navigate('Registration')
     }
     const signIn = () => {
-        instance.post('/login', {
-
-            userName: userName,
-            password: password,
-        })
-            .then(function (response) {
-                storeData(response);
-
-                console.log("login success");
-
+        if(userName && password != null){
+            instance.post('/login', {
+            
+                userName: userName,
+                password: password,
             })
-            .catch(function (error) {
-                console.log(error);
-
-            });
+                .then(function (response) {
+                    console.log(response.data);
+                    storeData(response);
+    
+                    // console.log("login success");
+    
+                })
+                .catch(function (error) {
+                    console.log(error);
+    
+                });
+        }else{}
+        
     }
     const storeData = async (response) => {
         try {
             await AsyncStorage.setItem('stmToken', response.data.token);
-         const genToken= await AsyncStorage.getItem('stmToken');
-            console.log("token"+genToken);
-            console.log(response.data.token);
-            navigation.navigate('Drawernav')
+        //  const genToken= await AsyncStorage.getItem('stmToken');
+            // console.log("token :"+genToken);
+            // console.log(response.data);
+            navigation.navigate('DrawerNav')
         } catch (e) {
             // saving error
         }

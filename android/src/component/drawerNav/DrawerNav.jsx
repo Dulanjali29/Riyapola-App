@@ -7,13 +7,16 @@ import MyProfile from '../../pages/MyProfile/MyProfile';
 import { View } from 'react-native';
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNav() {
+export default function DrawerNav({navigation}) {
+    const logOut=()=>{
+        navigation.navigate('Login');
+    }
     return (
        
         <Drawer.Navigator>
         <Drawer.Screen name="Home" component={CarView} />
         <Drawer.Screen name="My Profile" component={MyProfile} />
-        
+        <Drawer.Screen name="Logout" component={logOut} />
       </Drawer.Navigator>
     )
 }
