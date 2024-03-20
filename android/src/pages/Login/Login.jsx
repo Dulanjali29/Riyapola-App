@@ -3,36 +3,62 @@ import React, { useState } from 'react';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
+import instance from '../../service/AxiosOrder';
 
-export default function Login({navigation}) {
+
+export default function Login({ navigation }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
-    
+
     const signUp = () => {
-      navigation.navigate('Registration') 
+        navigation.navigate('Registration')
     }
     const signIn = () => {
-     
+        instance.post('/login', {
+
+            userName: userName,
+            password: password,
+        })
+            .then(function (response) {
+                storeData(response);
+
+                // console.log("login success");
+
+            })
+            .catch(function (error) {
+                console.log(error);
+
+            });
     }
-    
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
+    const storeData = async (response) => {
+        try {
+            await AsyncStorage.setItem('stmToken', response.data.token);
+         const genToken= await AsyncStorage.getItem('stmToken');
+            console.log("token"+genToken);
+            console.log(response.data.token);
+            // navigation.navigate('Drawernav')
+        } catch (e) {
+            // saving error
+        }
+    };
+    return (
+        <ScrollView contentContainerStyle={styles.container}>
             <ImageBackground source={require('../../assets/login2.jpg')} style={styles.imageBackground}>
                 <View style={styles.overlay}>
                     <Text style={styles.header}>Login</Text>
-                    
-                   
+
+
                     <InputText
                         style={styles.input}
                         value={userName}
                         label={'User Name'}
-                        onChange={(val) => setUserName(val)}
+                        onChangeText={(val) => setUserName(val)}
                     />
                     <InputText
                         style={styles.input}
                         value={password}
                         label={'Password'}
-                        onChange={(val) => setPassword(val)}
+                        onChangeText={(val) => setPassword(val)}
                         secureTextEntry
                     />
                     <MyButton
@@ -44,12 +70,12 @@ export default function Login({navigation}) {
                     />
                 </View>
                 <View style={styles.text} >
-                    <Text style={{color:'white'}} >Already have an account ? </Text>
+                    <Text style={{ color: 'white' }} >Already have an account ? </Text>
                     <View>
                         <TouchableOpacity>
                             <Text
-                               
-                                style={{ color: '#AF7AC5', marginTop: 10 ,marginBottom:20,fontSize:20}}
+
+                                style={{ color: '#AF7AC5', marginTop: 10, marginBottom: 20, fontSize: 20 }}
                                 onPress={signUp} > Sign Up</Text>
                         </TouchableOpacity>
 
@@ -63,7 +89,7 @@ export default function Login({navigation}) {
                 <Footer />
             </View>
         </ScrollView>
-  )
+    )
 }
 const styles = StyleSheet.create({
     container: {
@@ -98,7 +124,7 @@ const styles = StyleSheet.create({
     },
     text: {
         alignItems: 'center',
-      
+
 
     }
 });
