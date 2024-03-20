@@ -22,7 +22,7 @@ export default function Login({ navigation }) {
             .then(function (response) {
                 storeData(response);
 
-                // console.log("login success");
+                console.log("login success");
 
             })
             .catch(function (error) {
@@ -36,7 +36,7 @@ export default function Login({ navigation }) {
          const genToken= await AsyncStorage.getItem('stmToken');
             console.log("token"+genToken);
             console.log(response.data.token);
-            // navigation.navigate('Drawernav')
+            navigation.navigate('Drawernav')
         } catch (e) {
             // saving error
         }
