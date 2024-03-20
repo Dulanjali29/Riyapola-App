@@ -4,6 +4,7 @@ import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from'../../service/AxiosOrder';
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 
 export default function Registration({navigation}) {
     const [firstName, setFirstName] = useState("");
@@ -12,23 +13,39 @@ export default function Registration({navigation}) {
     const [password, setPassword] = useState("");
 
     const signUp = () => {
-        instance.post('/customerRegister', {
-            firstName: firstName,
-            lastName: lastName,
-            userName:userName,
-             password: password,
- 
-         })
-             .then(function (response) {
-       
-                 console.log(" User Registration Successfull");
-                 navigation.navigate('Login');
-                
+        if(firstName && lastName && userName && password !=null){
+            instance.post('/customerRegister', {
+                firstName: firstName,
+                lastName: lastName,
+                userName:userName,
+                 password: password,
+     
              })
-             .catch(function (error) {
- 
-                 console.log(error);
-             })
+                 .then(function (response) {
+           
+                     console.log(response);
+                     Dialog.show({
+                        type:ALERT_TYPE.SUCCESS,
+                        title:'Success',
+                        textBody:'Registration Succes!',
+                        button:'close',
+                     })
+                     navigation.navigate('Login');
+                    
+                 })
+                 .catch(function (error) {
+     
+                     console.log(error);
+                 })
+        }else{
+            Dialog.show({
+                type:ALERT_TYPE.WARNING,
+                title:'Warning!',
+                textBody:'Registration Failed!',
+                button:'close',
+             })   
+        }
+      
      }
     const signin = () => {
        navigation.navigate('Login')

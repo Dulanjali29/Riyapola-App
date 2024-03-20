@@ -5,6 +5,7 @@ import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from '../../service/AxiosOrder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 
 
 export default function Login({ navigation }) {
@@ -25,14 +26,21 @@ export default function Login({ navigation }) {
                     console.log(response.data);
                     storeData(response);
     
-                    // console.log("login success");
-    
                 })
                 .catch(function (error) {
                     console.log(error);
     
                 });
-        }else{}
+        }else{
+            Dialog.show({
+            type: ALERT_TYPE.WARNING,
+            title: 'Warning',
+            textBody: 'Plese valide Data!',
+            button: 'close',
+        })
+           
+             
+        }
         
     }
     const storeData = async (response) => {
@@ -46,6 +54,7 @@ export default function Login({ navigation }) {
             // saving error
         }
     };
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <ImageBackground source={require('../../assets/login2.jpg')} style={styles.imageBackground}>
