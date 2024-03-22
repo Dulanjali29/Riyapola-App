@@ -7,7 +7,6 @@ import instance from '../../service/AxiosOrder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 
-
 export default function Login({ navigation }) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +16,7 @@ export default function Login({ navigation }) {
     }
     const signIn = () => {
         if(userName && password != null){
-            instance.post('/login', {
+            instance.post('customer/login', {
             
                 userName: userName,
                 password: password,
@@ -37,9 +36,7 @@ export default function Login({ navigation }) {
             title: 'Warning',
             textBody: 'Plese valide Data!',
             button: 'close',
-        })
-           
-             
+        })        
         }
         
     }
