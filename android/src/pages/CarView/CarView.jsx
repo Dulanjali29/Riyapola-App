@@ -10,7 +10,30 @@ export default function CarView() {
   }, [])
 
   const getAllCars = () => {
-    
+    instance({
+      method: 'get',
+      url: '/car/getAllCar',
+    })
+      .then(function (response) {
+
+        const array = [];
+        response.data.forEach(val => {
+          array.push({
+
+            brand: val.brand,
+            model: val.model,
+
+
+          })
+
+        });
+
+        setData(array);
+
+      }).catch(error => {
+        console.error(error);
+
+      });
   }
   return (
     <View>
