@@ -14,7 +14,7 @@ export default function Registration({navigation}) {
 
     const signUp = () => {
         if(firstName && lastName && userName && password !=null){
-            instance.post('customer/customerRegister', {
+            instance.post('/customer/customerRegister', {
                 firstName: firstName,
                 lastName: lastName,
                 userName:userName,

@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
     }
     const signIn = () => {
         if(userName && password != null){
-            instance.post('customer/login', {
+            instance.post('/customer/login', {
             
                 userName: userName,
                 password: password,

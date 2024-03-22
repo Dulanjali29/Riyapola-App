@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native-gesture-handler';
 import CarCard from '../../component/CarCard/CarCard';
+import instance from '../../service/AxiosOrder';
 
 export default function CarView() {
   const [data, setData] = useState([])
@@ -22,7 +23,9 @@ export default function CarView() {
 
             brand: val.brand,
             model: val.model,
-
+            passanger:val.noOfPassangers,
+            dailyRentalPrice:val.dailyRentalPrice,
+            status:val.status,
 
           })
 
@@ -44,6 +47,11 @@ export default function CarView() {
            
             brand={item.brand}
             model={item.model}
+            passanger={item.passanger}
+            dailyRentalPrice={item.dailyRentalPrice}
+            status={item.status}
+
+
            
           />
         )}
