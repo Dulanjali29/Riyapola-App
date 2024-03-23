@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 675,
+        height: 730,
     },
     overlay: {
         marginTop: 180,

@@ -31,12 +31,12 @@ export default function Login({ navigation }) {
     
                 });
         }else{
-        //     Dialog.show({
-        //     type: ALERT_TYPE.WARNING,
-        //     title: 'Warning',
-        //     textBody: 'Plese valide Data!',
-        //     button: 'close',
-        // })        
+            Dialog.show({
+            type: ALERT_TYPE.WARNING,
+            title: 'Warning',
+            textBody: 'Please valide Data!',
+            button: 'close',
+        })        
         }
         
     }
@@ -111,10 +111,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 680,
+        height: 730,
     },
     overlay: {
-        marginTop: 350,
+        marginTop: 370,
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 20,
     },
