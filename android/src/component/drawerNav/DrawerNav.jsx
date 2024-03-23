@@ -14,7 +14,7 @@ export default function DrawerNav({navigation}) {
     return (
        
         <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={CarView} />
+        <Drawer.Screen name="Home"  component={CarView}  />
         <Drawer.Screen name="My Profile" component={MyProfile} />
         <Drawer.Screen name="Logout" component={logOut} />
       </Drawer.Navigator>

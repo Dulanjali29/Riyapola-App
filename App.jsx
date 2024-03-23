@@ -18,7 +18,7 @@ export default function App() {
       <Stack.Navigator>
      
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}} />
+      <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}}  />
         <Stack.Screen name="CarCard" component={CarCard} />
         <Stack.Screen name="Registration" component={Registration} />
      

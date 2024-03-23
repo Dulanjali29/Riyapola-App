@@ -6,7 +6,7 @@ export default function MyButton({buttonColor,onPress,text,style,textColor,mode}
   return (
     <View>
       <Button 
-      
+      variant="contained"
       mode={mode}
       
       buttonColor={buttonColor}

@@ -12,8 +12,8 @@ export default function InputText({label,value,onChangeText,secureTextEntry,styl
      onChangeText={onChangeText}
      secureTextEntry={secureTextEntry}
      style={style}
-    //  outlineColor='#873600'
-    //  activeOutlineColor='#873600'
+     outlineColor='white'
+     activeOutlineColor='#873600'
   
    />
   )

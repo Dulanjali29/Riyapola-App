@@ -53,7 +53,7 @@ export default function Registration({navigation}) {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <ImageBackground source={require('../../assets/registerBack.jpg')} style={styles.imageBackground}>
+            <ImageBackground source={require('../../assets/reg.jpg')} style={styles.imageBackground}>
                 <View style={styles.overlay}>
                     <Text style={styles.header}>Customer Registration</Text>
                     <InputText
@@ -85,7 +85,7 @@ export default function Registration({navigation}) {
                         style={styles.button}
                         text="Sign Up"
                         textColor="white"
-                        buttonColor="#873600"
+                        buttonColor="#673147"
                         onPress={signUp}
                     />
                 </View>
@@ -95,7 +95,7 @@ export default function Registration({navigation}) {
                         <TouchableOpacity>
                             <Text
                                
-                                style={{ color: '#E59866', marginTop: 10 ,marginBottom:20,fontSize:20}}
+                                style={{ color: '#A95C68', marginTop: 10 ,marginBottom:20,fontSize:20}}
                                 onPress={signin} > Sign In</Text>
                         </TouchableOpacity>
 
@@ -142,6 +142,7 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 20,
         marginBottom: 20,
+        borderRadius:10,
     },
     text: {
         alignItems: 'center',

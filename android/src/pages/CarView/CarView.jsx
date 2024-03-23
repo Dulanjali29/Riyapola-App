@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { FlatList } from 'react-native-gesture-handler';
 import CarCard from '../../component/CarCard/CarCard';
 import instance from '../../service/AxiosOrder';
+import car from '../../assets/cars/car1.jpg';
+import car2 from '../../assets/cars/car2.jpg';
+
 
 export default function CarView() {
   const [data, setData] = useState([])
@@ -20,10 +23,10 @@ export default function CarView() {
         const array = [];
         response.data.forEach(val => {
           array.push({
-
+            cars:car,
             brand: val.brand,
             model: val.model,
-            passanger:val.noOfPassangers,
+            passengers:val.noOfPassengers,
             dailyRentalPrice:val.dailyRentalPrice,
             status:val.status,
 
@@ -44,10 +47,10 @@ export default function CarView() {
         data={data}
         renderItem={({ item }) => (
           <CarCard
-           
+            cars={item.cars}
             brand={item.brand}
             model={item.model}
-            passanger={item.passanger}
+            passengers={item.passengers}
             dailyRentalPrice={item.dailyRentalPrice}
             status={item.status}
 

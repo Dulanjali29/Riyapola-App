@@ -31,12 +31,12 @@ export default function Login({ navigation }) {
     
                 });
         }else{
-            Dialog.show({
-            type: ALERT_TYPE.WARNING,
-            title: 'Warning',
-            textBody: 'Plese valide Data!',
-            button: 'close',
-        })        
+        //     Dialog.show({
+        //     type: ALERT_TYPE.WARNING,
+        //     title: 'Warning',
+        //     textBody: 'Plese valide Data!',
+        //     button: 'close',
+        // })        
         }
         
     }
@@ -54,7 +54,7 @@ export default function Login({ navigation }) {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <ImageBackground source={require('../../assets/login2.jpg')} style={styles.imageBackground}>
+            <ImageBackground source={require('../../assets/loginback2.jpg')} style={styles.imageBackground}>
                 <View style={styles.overlay}>
                     <Text style={styles.header}>Login</Text>
 
@@ -76,7 +76,7 @@ export default function Login({ navigation }) {
                         style={styles.button}
                         text="Sign In"
                         textColor="white"
-                        buttonColor="#5B2C6F"
+                        buttonColor="#673147"
                         onPress={signIn}
                     />
                 </View>
@@ -86,7 +86,7 @@ export default function Login({ navigation }) {
                         <TouchableOpacity>
                             <Text
 
-                                style={{ color: '#AF7AC5', marginTop: 10, marginBottom: 20, fontSize: 20 }}
+                                style={{ color: '#A95C68', marginTop: 10, marginBottom: 20, fontSize: 20 }}
                                 onPress={signUp} > Sign Up</Text>
                         </TouchableOpacity>
 
@@ -132,6 +132,7 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 10,
         marginBottom: 0,
+        borderRadius:10,
     },
     text: {
         alignItems: 'center',
