@@ -3,26 +3,24 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 
-export default function MainPage({navigation}) {
-    const getStart=()=>{
-navigation.navigate('CarView')
-    }
+export default function MainPage({ navigation }) {
+  const getStart = () => {
+    navigation.navigate('CarView');
+  };
+
   return (
     <View style={styles.container}>
       <ImageBackground source={require('../../assets/main.jpg')} style={styles.imageBackground}>
         <View style={styles.overlay}>
-          <View style={styles.textContainer}>
-            <Text style={styles.header}>Welcome to Riyapola</Text>
-          </View>
-          <View style={styles.buttonContainer}>
-            <MyButton
-              style={styles.button}
-              text="Get Started"
-              textColor="white"
-              buttonColor="#673147"
-              onPress={getStart}
-            />
-          </View>
+          <Text style={styles.header}>Express The Road Ahead with</Text>
+          <Text style={[styles.header, styles.headerBold]}>Riyapola</Text>
+          <MyButton
+            style={styles.button}
+            text="Get Started"
+            textColor="white"
+            buttonColor="#673147"
+            onPress={getStart}
+          />
         </View>
       </ImageBackground>
       <Footer />
@@ -48,25 +46,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     padding: 20,
   },
-  textContainer: {
-    marginTop: 250,
-  },
   header: {
     fontSize: 30,
-    fontWeight: 'bold',
-    marginBottom: 30,
     color: 'white',
+    textAlign: 'center',
+    marginBottom: 10,
   },
-  buttonContainer: {
-    width: '100%',
-    paddingHorizontal: 40, 
-    justifyContent: 'center',
-    alignItems: 'center',
+  headerBold: {
+    fontWeight: 'bold',
   },
   button: {
-    marginTop: 300,
-    marginBottom: 20, 
+    marginTop: 400,
+    width: 200,
     borderRadius: 10,
-    width:200 
   },
 });
