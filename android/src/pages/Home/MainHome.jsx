@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import CarView from '../CarView/CarView'
 
-export default function Home() {
+export default function MainHome() {
   return (
     <View>
-      <Text>Home</Text>
+      <CarView/>
     </View>
   )
 }

@@ -5,7 +5,7 @@ import Footer from '../../common/Footer/Footer';
 
 export default function MainPage({navigation}) {
     const getStart=()=>{
-navigation.navigate('Login')
+navigation.navigate('CarView')
     }
   return (
     <View style={styles.container}>
