@@ -5,7 +5,7 @@ import axios from "axios";
 let cachedToken = null;
 
 const instance = axios.create({
-  baseURL: 'http://192.168.169.81:8080/riyapola',
+  baseURL: 'http://192.168.8.130:8080/riyapola',
   headers: {
     Authorization: cachedToken ? `Bearer ${cachedToken}` : ''
   }

@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import CarCard from '../../component/CarCard/CarCard';
 import instance from '../../service/AxiosOrder';
 import car from '../../assets/cars/car1.jpg';
-import car2 from '../../assets/cars/car2.jpg';
+
 
 
 export default function CarView() {
