@@ -4,14 +4,16 @@ import { Card, Text } from 'react-native-paper';
 import MyButton from '../../common/Mybutton/MyButton';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function CarCard({ cars, brand, model, passengers, dailyRentalPrice, status }) {
-  const bookingNow = () => {};
+export default function CarCard({ cars, brand, model, passengers, dailyRentalPrice, status, navi }) {
+  const bookingNow = () => {
+  navi()
+  }
 
   return (
     <ScrollView>
       <Card style={styles.card}>
         <Card.Content>
-          <Image  style={styles.image} source={cars} />
+          <Image style={styles.image} source={cars} />
           <View style={styles.cardContent}>
             <Text style={styles.title}>{brand} {model}</Text>
             <View style={styles.detailsContainer}>
@@ -30,6 +32,7 @@ export default function CarCard({ cars, brand, model, passengers, dailyRentalPri
               />
             </View>
           </View>
+          
         </Card.Content>
       </Card>
     </ScrollView>
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 10,
-    
+
   },
   button: {
     borderRadius: 10,

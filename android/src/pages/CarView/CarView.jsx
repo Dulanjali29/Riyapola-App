@@ -16,19 +16,19 @@ export default function CarView() {
   const getAllCars = () => {
     instance({
       method: 'get',
-      url: '/car/getAllCar',
+      url: '/customer/getAllCars',
     })
       .then(function (response) {
 
         const array = [];
         response.data.forEach(val => {
           array.push({
-            cars:car,
+            cars: car,
             brand: val.brand,
             model: val.model,
-            passengers:val.noOfPassengers,
-            dailyRentalPrice:val.dailyRentalPrice,
-            status:val.status,
+            passengers: val.noOfPassengers,
+            dailyRentalPrice: val.dailyRentalPrice,
+            status: val.status,
 
           })
 
@@ -40,6 +40,8 @@ export default function CarView() {
         console.error(error);
 
       });
+
+ 
   }
   return (
     <View>
@@ -55,11 +57,15 @@ export default function CarView() {
             status={item.status}
 
 
-           
+
           />
         )}
-       
+
       />
+      {/* {
+        <CarView navi={() => { navigation.navigate('Login') }} />
+      } */}
+
     </View>
   )
 }

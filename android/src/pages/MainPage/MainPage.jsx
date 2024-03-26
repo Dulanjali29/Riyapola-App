@@ -4,6 +4,7 @@ import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 
 export default function MainPage({ navigation }) {
+  
   const getStart = () => {
     navigation.navigate('CarView');
   };
