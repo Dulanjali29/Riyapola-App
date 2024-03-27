@@ -1,38 +1,35 @@
 import * as React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
-import { Card, Text } from 'react-native-paper';
-import MyButton from '../../common/Mybutton/MyButton';
+import { View, StyleSheet, Image } from 'react-native';
+import { Text, Card, Button } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function CarCard({ cars, brand, model, passengers, dailyRentalPrice, status, navi }) {
+
+export default function CarCard({ cars, brand, model, passengers, dailyRentalPrice, status,navigation }) {
+
   const bookingNow = () => {
-  navi()
+    navigation.navigate('Login');
+    
   }
 
   return (
     <ScrollView>
       <Card style={styles.card}>
+        <Card.Cover source={cars} style={styles.image} />
         <Card.Content>
-          <Image style={styles.image} source={cars} />
-          <View style={styles.cardContent}>
-            <Text style={styles.title}>{brand} {model}</Text>
-            <View style={styles.detailsContainer}>
-              <Text style={styles.detailText}>{passengers} Seater</Text>
-              <Text style={styles.detailText}>LKR.{dailyRentalPrice}/day</Text>
-              <Text style={styles.detailText}>{status}</Text>
-            </View>
-            <View style={styles.buttonContainer}>
-              <MyButton
-                mode={'contained'}
-                text={'Book Now'}
-                buttonColor={'#673147'}
-                textColor={'white'}
-                onPress={bookingNow}
-                style={styles.button}
-              />
-            </View>
+          <Text style={styles.title}>{brand} {model}</Text>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.detailText}>{passengers} Seater</Text>
+            <Text style={styles.detailText}>LKR.{dailyRentalPrice}/day</Text>
+            <Text style={styles.detailText}>{status}</Text>
           </View>
-          
+          <Button
+            mode="contained"
+            onPress={bookingNow}
+            style={styles.button}
+            labelStyle={styles.buttonLabel}
+          >
+            Book Now
+          </Button>
         </Card.Content>
       </Card>
     </ScrollView>
@@ -45,13 +42,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     borderRadius: 10,
     elevation: 4,
-    shadowColor: '#000',
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
     backgroundColor: '#fff',
-  },
-  cardContent: {
-    padding: 15,
   },
   title: {
     fontSize: 20,
@@ -68,17 +59,17 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   image: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },
-  buttonContainer: {
-    marginTop: 10,
-
-  },
   button: {
     borderRadius: 10,
+    marginTop: 10,
+    backgroundColor: '#673147',
+  },
+  buttonLabel: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

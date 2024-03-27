@@ -1,19 +1,22 @@
-import { View, Text } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
+
 import CarCard from '../../component/CarCard/CarCard';
 import instance from '../../service/AxiosOrder';
-import car from '../../assets/cars/car1.jpg';
+import car1 from '../../assets/cars/car1.jpg';
 
 
-
-export default function CarView() {
+export default function CarView({navigation}) {
   const [data, setData] = useState([])
+  const [visible, setVisible] = useState(false)
+
   useEffect(() => {
     getAllCars();
   }, [])
 
   const getAllCars = () => {
+    console.log('dula');
     instance({
       method: 'get',
       url: '/customer/getAllCars',
@@ -23,7 +26,7 @@ export default function CarView() {
         const array = [];
         response.data.forEach(val => {
           array.push({
-            cars: car,
+            cars: car1,
             brand: val.brand,
             model: val.model,
             passengers: val.noOfPassengers,
@@ -41,31 +44,53 @@ export default function CarView() {
 
       });
 
- 
+
+  }
+  const closeDialog = () => {
+    setVisible(false)
+  }
+  const openDialog = () => {
+
+    setVisible(true)
+
   }
   return (
-    <View>
+    <ScrollView contentContainerStyle={styles.container}>
+    
+      <View>
+      <Text style={styles.title}>Choose Your Vehicle</Text>
+      </View>
       <FlatList
         data={data}
         renderItem={({ item }) => (
           <CarCard
-            cars={item.cars}
+            cars={item.car1}
             brand={item.brand}
             model={item.model}
             passengers={item.passengers}
             dailyRentalPrice={item.dailyRentalPrice}
             status={item.status}
-
-
+            navigation={navigation}
 
           />
         )}
 
       />
-      {/* {
-        <CarView navi={() => { navigation.navigate('Login') }} />
-      } */}
-
-    </View>
+      
+ 
+    </ScrollView>
   )
 }
+const styles=StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+})
