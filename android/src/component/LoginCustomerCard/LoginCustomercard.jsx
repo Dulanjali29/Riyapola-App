@@ -3,18 +3,20 @@ import { View, StyleSheet, Image } from 'react-native';
 import { Text, Card, Button } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
-export default function LoginCustomercard() {
+export default function LoginCustomercard({ cars, brand, model, passengers,fueltype,trMode,dailyRentalPrice, status,navigation }) {
   return (
     <ScrollView>
     <Card style={styles.card}>
       <Card.Cover source={cars} style={styles.image} />
       <Card.Content>
-        <Text style={styles.title}>{brand} {model}</Text>
-        <View style={styles.detailsContainer}>
-          <Text style={styles.detailText}>{passengers} Seater</Text>
-          <Text style={styles.detailText}>LKR.{dailyRentalPrice}/day</Text>
-          <Text style={styles.detailText}>{status}</Text>
-        </View>
+    <Text style={styles.title}>{brand} {model}</Text>
+          <View style={styles.detailsContainer}>
+            <Text style={styles.detailText}>{passengers} Seater</Text>
+            <Text style={styles.detailText}>{fueltype} Seater</Text>
+            <Text style={styles.detailText}>{trMode} Seater</Text>
+            <Text style={styles.detailText}>LKR.{dailyRentalPrice}/day</Text>
+            <Text style={styles.detailText}>{status}</Text>
+          </View>
         <Button
           mode="contained"
           onPress={bookingNow}
