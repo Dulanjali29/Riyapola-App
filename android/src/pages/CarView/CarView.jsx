@@ -77,6 +77,7 @@ export default function CarView({navigation}) {
 
       />
       
+
  
     </ScrollView>
   )
