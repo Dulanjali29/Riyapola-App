@@ -1,18 +1,20 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
+import car1 from '../../assets/cars/car1.jpg';
 
 import LoginCustomercard from "../../component/LoginCustomerCard/LoginCustomercard";
 import instance from '../../service/AxiosOrder';
 
 
-export default function LoginCustomerCarView() {
+export default function LoginCustomerCarView({navigation}) {
   const [data, setData] = useState([])
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     getAllCars();
   }, [])
+
   const getAllCars = () => {
     console.log('dulanji');
     instance({
@@ -64,7 +66,7 @@ export default function LoginCustomerCarView() {
           trMode={item.trMode}
           dailyRentalPrice={item.dailyRentalPrice}
           status={item.status}
-          // navigation={navigation}
+         
 
         />
       )}
