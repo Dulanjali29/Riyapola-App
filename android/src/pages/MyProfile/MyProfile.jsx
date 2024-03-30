@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
+import { useState,useEffect } from 'react';
+import instance from '../../service/AxiosOrder';
+
 
 export default function MyProfile() {
   const [firstName, setFirstName] = useState("");
@@ -12,8 +15,61 @@ export default function MyProfile() {
   const [email, setEmail] = useState("");
 
   const update = () => {
+    if(firstName && lastName && userName && password !=null){
+      instance.post('/customer/customerUpdate'+id, {
+          firstName: firstName,
+          lastName: lastName,
+          nic:nic,
+          address:address,
+          contact:contact,
+          email:email,
 
+          
+
+       })
+           .then(function (response) {
+     
+               console.log(response);
+               Dialog.show({
+                  type:ALERT_TYPE.SUCCESS,
+                  title:'Success',
+                  textBody:'update Succes!',
+                  button:'close',
+               })
+               navigation.navigate('Login');
+              
+           })
+           .catch(function (error) {
+
+               console.log(error);
+           })
+  }else{
+      Dialog.show({
+          type:ALERT_TYPE.WARNING,
+          title:'Warning!',
+          textBody:'Update Failed!',
+          button:'close',
+       })   
   }
+  }
+  useEffect(() => {
+    getCustomerById();
+  }, [])
+
+  const getCustomerById = () => {
+    console.log('dula');
+    instance({
+      method: 'get',
+      url: '/customer/search_customer/'+id,
+    })
+      .then(function (response) {
+
+      
+
+      }).catch(error => {
+        console.error(error);
+
+      });
   const clear = () => {
     setFirstName('');
     setLastName('');
@@ -90,6 +146,7 @@ export default function MyProfile() {
 
     </ScrollView>
   )
+}
 }
 const styles = StyleSheet.create({
   container: {
