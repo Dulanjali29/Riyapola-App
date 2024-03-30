@@ -14,7 +14,14 @@ export default function MyProfile() {
   const update = () => {
 
   }
-  const clear = () => { }
+  const clear = () => {
+    setFirstName('');
+    setLastName('');
+    setNic('');
+    setAddress('');
+    setContact('');
+    setEmail('');
+   }
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
