@@ -43,9 +43,13 @@ export default function Login({ navigation }) {
     const storeData = async (response) => {
         try {
             await AsyncStorage.setItem('stmToken', response.data.token);
-        //  const genToken= await AsyncStorage.getItem('stmToken');
+            // await AsyncStorage.setItem('customerId',response.data.cusId)
+
+         const genToken= await AsyncStorage.getItem('stmToken');
+        //  const cusId=await AsyncStorage.getItem('customerId');
         //     console.log("token :"+genToken);
-            // console.log(response.data);
+        //     console.log("customer id:"+cusId);
+
             navigation.navigate('DrawerNav')
         } catch (e) {
             // saving error

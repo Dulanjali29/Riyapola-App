@@ -16,7 +16,7 @@ export default function MyProfile() {
 
   const update = () => {
     if(firstName && lastName && userName && password !=null){
-      instance.post('/customer/customerUpdate'+id, {
+      instance.post('/customer/customerUpdate',{
           firstName: firstName,
           lastName: lastName,
           nic:nic,
@@ -60,16 +60,27 @@ export default function MyProfile() {
     console.log('dula');
     instance({
       method: 'get',
-      url: '/customer/search_customer/'+id,
+      url: '/customer/getCustomerDetails',
     })
       .then(function (response) {
-
+       
+        const userData=response.data;
+        console.log(userData.firstName);
+        setFirstName(userData.firstName);
+        setLastName(userData.lastName);
+        setNic(userData.nic);
+        setAddress(userData.address);
+        setContact(userData.contact);
+        setEmail(userData.email);
+        
       
 
       }).catch(error => {
         console.error(error);
 
       });
+    }
+      
   const clear = () => {
     setFirstName('');
     setLastName('');
@@ -87,37 +98,37 @@ export default function MyProfile() {
           style={styles.input}
           value={firstName}
           label={'First Name'}
-          onChangeText={(val) => setFirstName(val)}
+          onChangeText={setFirstName}
         />
         <InputText
           style={styles.input}
           value={lastName}
           label={'Last Name'}
-          onChangeText={(val) => setLastName(val)}
+          onChangeText={setLastName}
         />
         <InputText
           style={styles.input}
           value={nic}
           label={'NIC'}
-          onChangeText={(val) => setNic(val)}
+          onChangeText={setNic}
         />
         <InputText
           style={styles.input}
           value={address}
           label={'Address'}
-          onChangeText={(val) => setAddress(val)}
+          onChangeText={ setAddress}
         />
         <InputText
           style={styles.input}
           value={contact}
           label={'Contact'}
-          onChangeText={(val) => setContact(val)}
+          onChangeText={setContact}
         />
         <InputText
           style={styles.input}
           value={email}
           label={'E mail'}
-          onChangeText={(val) => setEmail(val)}
+          onChangeText={setEmail}
         />
         <View style={styles.btnContainer}>
           <View style={styles.btnClear}>
@@ -147,7 +158,7 @@ export default function MyProfile() {
     </ScrollView>
   )
 }
-}
+
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
