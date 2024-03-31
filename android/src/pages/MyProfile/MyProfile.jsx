@@ -4,9 +4,10 @@ import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import { useState, useEffect } from 'react';
 import instance from '../../service/AxiosOrder';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-export default function MyProfile() {
+export default function MyProfile({ navigation }) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nic, setNic] = useState("");
@@ -65,7 +66,7 @@ export default function MyProfile() {
       url: '/customer/getCustomerDetails',
     })
       .then(function (response) {
-        
+
         const userData = response.data;
         console.log(userData.firstName);
         setFirstName(userData.firstName);
@@ -83,93 +84,105 @@ export default function MyProfile() {
   }
 
   const deleteAcc = () => {
+    instance.delete('/customer/deleteCustomerById')
+      .then(response => {
+        console.log(response);
 
+        navigation.navigate('Login');
+
+
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
-  const clear = () => {
-    setFirstName('');
-    setLastName('');
-    setNic('');
-    setAddress('');
-    setContact('');
-    setEmail('');
+}
 
-  }
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
+const clear = () => {
+  setFirstName('');
+  setLastName('');
+  setNic('');
+  setAddress('');
+  setContact('');
+  setEmail('');
 
-      <View style={styles.overlay}>
-        <Text style={styles.header}>My Profile</Text>
-        <InputText
-          style={styles.input}
-          value={firstName}
-          label={'First Name'}
-          onChangeText={setFirstName}
-        />
-        <InputText
-          style={styles.input}
-          value={lastName}
-          label={'Last Name'}
-          onChangeText={setLastName}
-        />
-        <InputText
-          style={styles.input}
-          value={nic}
-          label={'NIC'}
-          onChangeText={setNic}
-        />
-        <InputText
-          style={styles.input}
-          value={address}
-          label={'Address'}
-          onChangeText={setAddress}
-        />
-        <InputText
-          style={styles.input}
-          value={contact}
-          label={'Contact'}
-          onChangeText={setContact}
-        />
-        <InputText
-          style={styles.input}
-          value={email}
-          label={'E mail'}
-          onChangeText={setEmail}
-        />
-        <View style={styles.btnContainer}>
-          <View style={styles.btnClear}>
-            <MyButton
-              style={styles.button}
-              text="Clear"
-              textColor="white"
-              buttonColor="#673147"
-              onPress={clear}
-            />
-          </View>
-          <View style={styles.btnedit}>
-            <MyButton
-              style={styles.button}
-              text="Update"
-              textColor="white"
-              buttonColor="#673147"
-              onPress={update}
-            />
-          </View>
-        </View>
-        <View>
+}
+return (
+  <ScrollView contentContainerStyle={styles.container}>
+
+    <View style={styles.overlay}>
+      <Text style={styles.header}>My Profile</Text>
+      <InputText
+        style={styles.input}
+        value={firstName}
+        label={'First Name'}
+        onChangeText={setFirstName}
+      />
+      <InputText
+        style={styles.input}
+        value={lastName}
+        label={'Last Name'}
+        onChangeText={setLastName}
+      />
+      <InputText
+        style={styles.input}
+        value={nic}
+        label={'NIC'}
+        onChangeText={setNic}
+      />
+      <InputText
+        style={styles.input}
+        value={address}
+        label={'Address'}
+        onChangeText={setAddress}
+      />
+      <InputText
+        style={styles.input}
+        value={contact}
+        label={'Contact'}
+        onChangeText={setContact}
+      />
+      <InputText
+        style={styles.input}
+        value={email}
+        label={'E mail'}
+        onChangeText={setEmail}
+      />
+      <View style={styles.btnContainer}>
+        <View style={styles.btnClear}>
           <MyButton
             style={styles.button}
-            text="Delete My Account"
+            text="Clear"
             textColor="white"
             buttonColor="#673147"
-            onPress={deleteAcc}
+            onPress={clear}
+          />
+        </View>
+        <View style={styles.btnedit}>
+          <MyButton
+            style={styles.button}
+            text="Update"
+            textColor="white"
+            buttonColor="#673147"
+            onPress={update}
           />
         </View>
       </View>
+      <View>
+        <MyButton
+          style={styles.button}
+          text="Delete My Account"
+          textColor="white"
+          buttonColor="#673147"
+          onPress={deleteAcc}
+        />
+      </View>
+    </View>
 
 
 
-    </ScrollView>
-  )
+  </ScrollView>
+)
 }
 
 const styles = StyleSheet.create({
