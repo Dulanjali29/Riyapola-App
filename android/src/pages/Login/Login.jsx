@@ -45,7 +45,7 @@ export default function Login({ navigation }) {
             await AsyncStorage.setItem('stmToken', response.data.token);
           
          const genToken= await AsyncStorage.getItem('stmToken');
-
+                console.log(genToken);
             navigation.navigate('DrawerNav')
         } catch (e) {
             // saving error

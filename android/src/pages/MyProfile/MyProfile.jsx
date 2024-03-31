@@ -87,7 +87,7 @@ export default function MyProfile({ navigation }) {
     instance.delete('/customer/deleteCustomerById')
       .then(response => {
         console.log(response);
-
+        removeToken()
         navigation.navigate('Login');
 
 
@@ -96,8 +96,25 @@ export default function MyProfile({ navigation }) {
         console.error(error);
       });
   }
-}
 
+
+removeToken = async () => {
+  try {
+    await AsyncStorage.removeItem('stmToken')
+    const value = await AsyncStorage.getItem('stmtoken')
+    if (value === null) {
+      navigation.navigate('CarView');
+
+    } else {
+      console.log("Error Log Out");
+    }
+
+
+  } catch (e) {
+    console.log(e);
+  }
+
+}
 const clear = () => {
   setFirstName('');
   setLastName('');
@@ -107,6 +124,7 @@ const clear = () => {
   setEmail('');
 
 }
+
 return (
   <ScrollView contentContainerStyle={styles.container}>
 

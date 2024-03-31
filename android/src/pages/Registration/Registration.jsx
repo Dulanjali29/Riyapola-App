@@ -23,7 +23,7 @@ export default function Registration({navigation}) {
              })
                  .then(function (response) {
            
-                     console.log(response);
+                     console.log(response.data);
                      Dialog.show({
                         type:ALERT_TYPE.SUCCESS,
                         title:'Success',
