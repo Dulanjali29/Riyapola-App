@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
-
+import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import instance from '../../service/AxiosOrder';
 
 
@@ -15,42 +15,44 @@ export default function MyProfile() {
   const [email, setEmail] = useState("");
 
   const update = () => {
-    if(firstName && lastName && userName && password !=null){
-      instance.post('/customer/customerUpdate',{
-          firstName: firstName,
-          lastName: lastName,
-          nic:nic,
-          address:address,
-          contact:contact,
-          email:email,
+    if (firstName && lastName && nic && address && contact && email != null) {
+      instance.put('/customer/customerUpdateById', {
+        firstName: firstName,
+        lastName: lastName,
+        nic: nic,
+        address: address,
+        contact: contact,
+        email: email,
 
-          
+      })
+        .then(function (response) {
 
-       })
-           .then(function (response) {
-     
-               console.log(response);
-               Dialog.show({
-                  type:ALERT_TYPE.SUCCESS,
-                  title:'Success',
-                  textBody:'update Succes!',
-                  button:'close',
-               })
-               navigation.navigate('Login');
-              
-           })
-           .catch(function (error) {
+          Dialog.show({
+            type: ALERT_TYPE.SUCCESS,
+            title: 'Success',
+            textBody: 'update Succes!',
+            button: 'close',
+          })
 
-               console.log(error);
-           })
-  }else{
+
+        })
+        .catch(function (error) {
+          Dialog.show({
+            type: ALERT_TYPE.WARNING,
+            title: 'Warning!',
+            textBody: 'Update Failed!',
+            button: 'close',
+          })
+          console.log(error);
+        })
+    } else {
       Dialog.show({
-          type:ALERT_TYPE.WARNING,
-          title:'Warning!',
-          textBody:'Update Failed!',
-          button:'close',
-       })   
-  }
+        type: ALERT_TYPE.WARNING,
+        title: 'Warning!',
+        textBody: 'plese fill all data!',
+        button: 'close',
+      })
+    }
   }
   useEffect(() => {
     getCustomerById();
@@ -63,8 +65,8 @@ export default function MyProfile() {
       url: '/customer/getCustomerDetails',
     })
       .then(function (response) {
-       
-        const userData=response.data;
+        
+        const userData = response.data;
         console.log(userData.firstName);
         setFirstName(userData.firstName);
         setLastName(userData.lastName);
@@ -72,15 +74,17 @@ export default function MyProfile() {
         setAddress(userData.address);
         setContact(userData.contact);
         setEmail(userData.email);
-        
-      
+
+
 
       }).catch(error => {
-        console.error(error);
-
+        console.error(error)
       });
-    }
-      
+  }
+
+  const deleteAcc = () => {
+
+  }
   const clear = () => {
     setFirstName('');
     setLastName('');
@@ -88,12 +92,13 @@ export default function MyProfile() {
     setAddress('');
     setContact('');
     setEmail('');
-   }
+
+  }
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
       <View style={styles.overlay}>
-        <Text style={styles.header}>Customer Registration</Text>
+        <Text style={styles.header}>My Profile</Text>
         <InputText
           style={styles.input}
           value={firstName}
@@ -116,7 +121,7 @@ export default function MyProfile() {
           style={styles.input}
           value={address}
           label={'Address'}
-          onChangeText={ setAddress}
+          onChangeText={setAddress}
         />
         <InputText
           style={styles.input}
@@ -141,16 +146,24 @@ export default function MyProfile() {
             />
           </View>
           <View style={styles.btnedit}>
-          <MyButton
-            style={styles.button}
-            text="Update"
-            textColor="white"
-            buttonColor="#673147"
-            onPress={update}
-          />
+            <MyButton
+              style={styles.button}
+              text="Update"
+              textColor="white"
+              buttonColor="#673147"
+              onPress={update}
+            />
           </View>
         </View>
-
+        <View>
+          <MyButton
+            style={styles.button}
+            text="Delete My Account"
+            textColor="white"
+            buttonColor="#673147"
+            onPress={deleteAcc}
+          />
+        </View>
       </View>
 
 
@@ -171,7 +184,7 @@ const styles = StyleSheet.create({
     height: 730,
   },
   overlay: {
- 
+
     backgroundColor: '#979A9A',
     padding: 20,
     height: 800,
@@ -180,7 +193,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: 'center',
     fontWeight: 'bold',
-    marginTop: 180,
+    marginTop: 120,
     marginBottom: 80,
     color: 'white',
 
@@ -205,11 +218,11 @@ const styles = StyleSheet.create({
   },
   btnClear: {
     width: '45%',
-    marginLeft:'20px'
+    marginLeft: '20px'
   },
   btnedit: {
     width: '45%',
-    marginLeft:'20px'
+    marginLeft: '20px'
   },
   text: {
     alignItems: 'center',

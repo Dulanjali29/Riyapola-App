@@ -5,7 +5,7 @@ import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from '../../service/AxiosOrder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
+import { ALERT_TYPE, Dialog ,AlertNotificationRoot,Toast} from 'react-native-alert-notification';
 
 export default function Login({ navigation }) {
     const [userName, setUserName] = useState("");
@@ -43,12 +43,8 @@ export default function Login({ navigation }) {
     const storeData = async (response) => {
         try {
             await AsyncStorage.setItem('stmToken', response.data.token);
-            // await AsyncStorage.setItem('customerId',response.data.cusId)
-
+          
          const genToken= await AsyncStorage.getItem('stmToken');
-        //  const cusId=await AsyncStorage.getItem('customerId');
-        //     console.log("token :"+genToken);
-        //     console.log("customer id:"+cusId);
 
             navigation.navigate('DrawerNav')
         } catch (e) {
