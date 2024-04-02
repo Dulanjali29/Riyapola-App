@@ -18,6 +18,28 @@ export default function Info() {
   const deleteAcc=()=>{
 
   }
+  useEffect(() => {
+    getCustomerById();
+  }, [])
+  const getCustomerById = () => {
+    console.log('dula');
+    instance({
+      method: 'get',
+      url: '/customer/getCustomerDetails',
+    })
+      .then(function (response) {
+
+        const userData = response.data;
+        console.log(userData.UserName);
+        setUserName(userData.userName);
+        setPassword(userData.password);
+       
+
+      }).catch(error => {
+        console.error(error)
+      });
+  }
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
