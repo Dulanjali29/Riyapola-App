@@ -13,7 +13,8 @@ export default function Info() {
 
   }
   const clear=()=>{
-
+setUserName("");
+setPassword("");
   }
   const deleteAcc=()=>{
 
