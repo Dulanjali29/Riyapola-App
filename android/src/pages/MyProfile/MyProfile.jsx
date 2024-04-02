@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
-import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
+import { ALERT_TYPE, AlertNotificationRoot, Dialog } from 'react-native-alert-notification';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import { useState, useEffect } from 'react';
@@ -176,6 +176,7 @@ return (
             onPress={clear}
           />
         </View>
+        <AlertNotificationRoot>
         <View style={styles.btnedit}>
           <MyButton
             style={styles.button}
@@ -185,6 +186,7 @@ return (
             onPress={update}
           />
         </View>
+        </AlertNotificationRoot>
       </View>
       <View>
         <MyButton
@@ -252,8 +254,10 @@ const styles = StyleSheet.create({
     marginLeft: '20px'
   },
   btnedit: {
-    width: '45%',
-    marginLeft: '20px'
+    width: '85%',
+    marginLeft: '20px',
+    
+    
   },
   text: {
     alignItems: 'center',
