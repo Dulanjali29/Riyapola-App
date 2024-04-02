@@ -15,20 +15,24 @@ export default function Login({ navigation }) {
         navigation.navigate('Registration')
     }
     const signIn = () => {
+       
         if(userName && password != null){
             instance.post('/customer/login', {
-            
+              
                 userName: userName,
                 password: password,
             })
                 .then(function (response) {
-                    console.log(response.data);
-                    storeData(response);
+                   
+                    if(response.data.token !=null){
+                        storeData(response);
+                    }
+                 
     
                 })
                 .catch(function (error) {
                     console.log(error);
-    
+                    console.log("Login Failed!");
                 });
         }else{
             Dialog.show({
@@ -45,10 +49,10 @@ export default function Login({ navigation }) {
             await AsyncStorage.setItem('stmToken', response.data.token);
           
          const genToken= await AsyncStorage.getItem('stmToken');
-                console.log(genToken);
+                console.log("Token-"+genToken);
             navigation.navigate('DrawerNav')
         } catch (e) {
-            // saving error
+            console.log(e,"faild");
         }
     };
 
