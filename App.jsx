@@ -2,14 +2,15 @@
 
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
 import Registration from './android/src/pages/Registration/Registration';
 import Login from './android/src/pages/Login/Login';
 import DrawerNav from './android/src/component/drawerNav/DrawerNav';
 import MainPage from './android/src/pages/MainPage/MainPage';
-import { NavigationContainer } from '@react-navigation/native';
 import CarCard from './android/src/component/CarCard/CarCard';
 import CarView from './android/src/pages/CarView/CarView';
-import Info from './android/src/pages/Info/Info';
+
 import { PaperProvider } from 'react-native-paper';
 
 const Stack = createStackNavigator();
@@ -19,7 +20,7 @@ export default function App() {
     <PaperProvider>
     <NavigationContainer>
       <Stack.Navigator>
-      <Stack.Screen name="HandleAccount" component={Info} options={{headerShown:false}} />
+  
       <Stack.Screen name="MainPage" component={MainPage} options={{headerShown:false}} />
       <Stack.Screen name="CarView" component={CarView} options={{headerShown:false}} />
       <Stack.Screen name="CarCard" component={CarCard} />

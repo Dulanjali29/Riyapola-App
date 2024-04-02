@@ -255,7 +255,7 @@ const styles = StyleSheet.create({
   },
   btnedit: {
     width: '85%',
-    marginLeft: '20px',
+    marginLeft: 30,
     
     
   },
