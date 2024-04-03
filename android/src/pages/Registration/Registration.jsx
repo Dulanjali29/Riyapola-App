@@ -4,7 +4,7 @@ import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from'../../service/AxiosOrder';
-import { ALERT_TYPE, Dialog } from 'react-native-alert-notification';
+import { ALERT_TYPE, Dialog,AlertNotificationRoot } from 'react-native-alert-notification';
 
 export default function Registration({navigation}) {
     const [firstName, setFirstName] = useState("");
@@ -81,6 +81,7 @@ export default function Registration({navigation}) {
                         onChangeText={(val) => setPassword(val)}
                         secureTextEntry
                     />
+                    <AlertNotificationRoot>
                     <MyButton
                         style={styles.button}
                         text="Sign Up"
@@ -88,6 +89,7 @@ export default function Registration({navigation}) {
                         buttonColor="#673147"
                         onPress={signUp}
                     />
+                    </AlertNotificationRoot>
                 </View>
                 <View style={styles.text} >
                     <Text style={{color:'white'}} >Already have an account ? </Text>
@@ -121,10 +123,10 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 730,
+      
     },
     overlay: {
-        marginTop: 180,
+        marginTop: 220,
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 20,
     },
@@ -132,7 +134,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginBottom: 30,
+        marginBottom: 20,
         color: 'white',
 
     },
@@ -140,7 +142,8 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     button: {
-        marginTop: 20,
+        width:'80px',
+        marginTop: 10,
         marginBottom: 20,
         borderRadius:10,
     },

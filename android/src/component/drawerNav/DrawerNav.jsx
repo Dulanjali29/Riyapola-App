@@ -2,18 +2,36 @@
 import React from 'react'
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import CarView from '../../pages/CarView/CarView';
+
 import MyProfile from '../../pages/MyProfile/MyProfile';
 import LoginCustomerCarView from '../../pages/LoginCustomerCarView/LoginCustomerCarView';
 import MyHistory from '../../pages/MyHistory/MyHistory';
 import Info from '../../pages/Info/Info';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNav({navigation}) {
     const logOut=()=>{
-        navigation.navigate('Login');
+
+       removeToken()
     }
+    removeToken = async () => {
+        try {
+          await AsyncStorage.removeItem('stmToken')
+          const value = await AsyncStorage.getItem('stmtoken')
+          if (value === null) {
+            navigation.navigate('Login');
+      
+          } else {
+            console.log("Error Log Out");
+          }
+      
+      
+        } catch (e) {
+          console.log(e);
+        }
+      
+      }
     return (
        
         <Drawer.Navigator options={{backgroundColor:'#673147'}} >

@@ -1,21 +1,21 @@
 import { View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
-import { ALERT_TYPE, AlertNotificationRoot, Dialog,Toast } from 'react-native-alert-notification';
+import { ALERT_TYPE, AlertNotificationRoot, Dialog, Toast } from 'react-native-alert-notification';
 import { useState, useEffect } from 'react';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import instance from '../../service/AxiosOrder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Info({navigation}) {
-  const[username,setUserName]=useState("")
-  const[password,setPassword]=useState("")
+export default function Info({ navigation }) {
+  const [username, setUserName] = useState("")
+  const [password, setPassword] = useState("")
 
-  const update=()=>{
-    if (username && password  != null) {
+  const update = () => {
+    if (username && password != null) {
       instance.put('/customer/customerUserNamePasswordUpdateById', {
-        userName:username,
+        userName: username,
         password: password,
-      
+
 
       })
         .then(function (response) {
@@ -47,46 +47,47 @@ export default function Info({navigation}) {
       })
     }
   }
-  
+
   removeToken = async () => {
     try {
       await AsyncStorage.removeItem('stmToken')
       const value = await AsyncStorage.getItem('stmtoken')
       if (value === null) {
         navigation.navigate('CarView');
-  
+
       } else {
         console.log("Error Log Out");
       }
-  
-  
+
+
     } catch (e) {
       console.log(e);
     }
-  
+
   }
-  const clear=()=>{
-setUserName("");
-setPassword("");
+  const clear = () => {
+    setUserName("");
+    setPassword("");
   }
-  const deleteAcc=()=>{
+
+  const deleteAcc = () => {
     instance.delete('/customer/deleteCustomerById')
-    .then(response => {
-     
-      removeToken()
-      navigation.navigate('Login');
+      .then(response => {
+
+        removeToken()
+        navigation.navigate('Login');
 
 
-    })
-    .catch(error => {
-      console.error(error);
-    });
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
   useEffect(() => {
     getCustomerById();
   }, [])
   const getCustomerById = () => {
-  
+
     instance({
       method: 'get',
       url: '/customer/getCustomerDetails',
@@ -98,7 +99,7 @@ setPassword("");
         console.log(userData.password);
         setUserName(userData.userName);
         setPassword(userData.password);
-       
+
 
       }).catch(error => {
         console.error(error)
@@ -108,59 +109,59 @@ setPassword("");
   return (
     <ScrollView contentContainerStyle={styles.container}>
 
-    <View style={styles.overlay}>
-      <Text style={styles.header}>Handle My Account</Text>
-      <InputText
-        style={styles.input}
-        value={username}
-        label={'User Name'}
-        onChangeText={setUserName}
-      />
-      <InputText
-        style={styles.input}
-        value={password}
-        type={'password'}
-        label={'Password'}
-        onChangeText={setPassword}
-      />
-   
-   
-   
-      <View style={styles.btnContainer}>
-        <View style={styles.btnClear}>
-          <MyButton
-            style={styles.button}
-            text="Clear"
-            textColor="white"
-            buttonColor="#673147"
-            onPress={clear}
-          />
-        </View>
-        <AlertNotificationRoot>
-        <View style={styles.btnedit}>
-          <MyButton
-            style={styles.button}
-            text="Update"
-            textColor="white"
-            buttonColor="#673147"
-            onPress={update}
-          />
-        </View>
-        </AlertNotificationRoot>
-      </View>
-      <View>
-        <MyButton
-          style={styles.button}
-          text="Delete My Account"
-          textColor="white"
-          buttonColor="#673147"
-          onPress={deleteAcc}
+      <View style={styles.overlay}>
+        <Text style={styles.header}>Handle My Account</Text>
+        <InputText
+          style={styles.input}
+          value={username}
+          label={'User Name'}
+          onChangeText={setUserName}
         />
+        <InputText
+          style={styles.input}
+          value={password}
+          type={'password'}
+          label={'Password'}
+          onChangeText={setPassword}
+        />
+
+
+
+        <View style={styles.btnContainer}>
+          <View style={styles.btnClear}>
+            <MyButton
+              style={styles.button}
+              text="Clear"
+              textColor="white"
+              buttonColor="#673147"
+              onPress={clear}
+            />
+          </View>
+          <AlertNotificationRoot>
+            <View style={styles.btnedit}>
+              <MyButton
+                style={styles.button}
+                text="Update"
+                textColor="white"
+                buttonColor="#673147"
+                onPress={update}
+              />
+            </View>
+          </AlertNotificationRoot>
+        </View>
+        <View>
+          <MyButton
+            style={styles.button}
+            text="Delete My Account"
+            textColor="white"
+            buttonColor="#673147"
+            onPress={deleteAcc}
+          />
+        </View>
       </View>
-    </View>
 
 
-  </ScrollView>
+    </ScrollView>
   )
 }
 const styles = StyleSheet.create({
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
   btnContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    
+
 
 
   },
@@ -214,8 +215,8 @@ const styles = StyleSheet.create({
   },
   btnedit: {
     width: '85%',
-    marginLeft:30
-    
+    marginLeft: 30
+
 
   },
   text: {

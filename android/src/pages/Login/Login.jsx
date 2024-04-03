@@ -5,7 +5,7 @@ import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from '../../service/AxiosOrder';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ALERT_TYPE, Dialog ,AlertNotificationRoot,Toast} from 'react-native-alert-notification';
+import { ALERT_TYPE, Dialog ,AlertNotificationRoot} from 'react-native-alert-notification';
 
 export default function Login({ navigation }) {
     const [userName, setUserName] = useState("");
@@ -35,11 +35,13 @@ export default function Login({ navigation }) {
                     console.log("Login Failed!");
                 });
         }else{
+
             Dialog.show({
             type: ALERT_TYPE.WARNING,
             title: 'Warning',
             textBody: 'Please valide Data!',
             button: 'close',
+           
         })        
         }
         
@@ -76,6 +78,7 @@ export default function Login({ navigation }) {
                         onChangeText={(val) => setPassword(val)}
                         secureTextEntry
                     />
+                    <AlertNotificationRoot>
                     <MyButton
                         style={styles.button}
                         text="Sign In"
@@ -83,6 +86,7 @@ export default function Login({ navigation }) {
                         buttonColor="#673147"
                         onPress={signIn}
                     />
+                    </AlertNotificationRoot>
                 </View>
                 <View style={styles.text} >
                     <Text style={{ color: 'white' }} >Already have an account ? </Text>
@@ -115,10 +119,9 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         justifyContent: 'center',
         width: '100%',
-        height: 730,
     },
     overlay: {
-        marginTop: 370,
+        marginTop: 220,
         backgroundColor: 'rgba(0,0,0,0.5)',
         padding: 20,
     },
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         textAlign: 'center',
         fontWeight: 'bold',
-        marginBottom: 30,
+        marginBottom: 20,
         color: 'white',
 
     },
@@ -134,8 +137,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     button: {
+        width:'80px',
         marginTop: 10,
-        marginBottom: 0,
+        marginBottom: 20,
         borderRadius:10,
     },
     text: {

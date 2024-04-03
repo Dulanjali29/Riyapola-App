@@ -4,7 +4,7 @@ import { FlatList, ScrollView } from 'react-native-gesture-handler';
 
 import CarCard from '../../component/CarCard/CarCard';
 import instance from '../../service/AxiosOrder';
-import car1 from '../../assets/cars/car1.jpg';
+
 
 
 export default function CarView({navigation}) {
@@ -26,7 +26,7 @@ export default function CarView({navigation}) {
         const array = [];
         response.data.forEach(val => {
           array.push({
-            cars: car1,
+            cars: val.carName,
             brand: val.brand,
             model: val.model,
             passengers: val.noOfPassengers,
@@ -64,7 +64,7 @@ export default function CarView({navigation}) {
         data={data}
         renderItem={({ item }) => (
           <CarCard
-            cars={item.car1}
+            cars={item.cars}
             brand={item.brand}
             model={item.model}
             passengers={item.passengers}
