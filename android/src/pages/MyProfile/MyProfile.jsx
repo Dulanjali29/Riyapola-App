@@ -34,7 +34,7 @@ export default function MyProfile({ navigation }) {
             textBody: 'update Succes!',
             button: 'close',
           })
-
+           
 
         })
         .catch(function (error) {
@@ -83,38 +83,6 @@ export default function MyProfile({ navigation }) {
       });
   }
 
-  const deleteAcc = () => {
-    instance.delete('/customer/deleteCustomerById')
-      .then(response => {
-        console.log(response);
-        removeToken()
-        navigation.navigate('Login');
-
-
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }
-
-
-removeToken = async () => {
-  try {
-    await AsyncStorage.removeItem('stmToken')
-    const value = await AsyncStorage.getItem('stmtoken')
-    if (value === null) {
-      navigation.navigate('CarView');
-
-    } else {
-      console.log("Error Log Out");
-    }
-
-
-  } catch (e) {
-    console.log(e);
-  }
-
-}
 const clear = () => {
   setFirstName('');
   setLastName('');
@@ -188,15 +156,7 @@ return (
         </View>
         </AlertNotificationRoot>
       </View>
-      <View>
-        <MyButton
-          style={styles.button}
-          text="Delete My Account"
-          textColor="white"
-          buttonColor="#673147"
-          onPress={deleteAcc}
-        />
-      </View>
+  
     </View>
 
 

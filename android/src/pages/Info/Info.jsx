@@ -27,7 +27,7 @@ export default function Info({navigation}) {
             button: 'close',
           })
           removeToken();
-
+          clear()
         })
         .catch(function (error) {
           Dialog.show({
