@@ -4,7 +4,7 @@ import { Text, Card, Button } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 
-export default function CarCard({ carName, brand, model, passengers, dailyRentalPrice, status,navigation }) {
+export default function CarCard({ images, brand, model, passengers, dailyRentalPrice, status, navigation }) {
 
   const bookingNow = () => {
     navigation.navigate('Login');
@@ -14,7 +14,7 @@ export default function CarCard({ carName, brand, model, passengers, dailyRental
   return (
     <ScrollView>
       <Card style={styles.card}>
-        <Card.Cover source={{uri:`http://192.168.8.130:8080/riyapola/&{carName}`}} style={styles.image} />
+        <Card.Cover source={{uri:`http://192.168.8.130:8080/${images}`}} style={styles.image} />
         <Card.Content>
           <Text style={styles.title}>{brand} {model}</Text>
           <View style={styles.detailsContainer}>

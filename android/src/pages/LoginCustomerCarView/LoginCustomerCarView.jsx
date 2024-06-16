@@ -10,23 +10,24 @@ import instance from '../../service/AxiosOrder';
 export default function LoginCustomerCarView({navigation}) {
   const [data, setData] = useState([])
   const [visible, setVisible] = useState(false)
-
+  const[selectedCar,setSelectedCar]=useState(null)
   useEffect(() => {
     getAllCars();
   }, [])
 
   const getAllCars = () => {
-    console.log('dulanji');
+  
     instance({
       method: 'get',
-      url: '/customer/registerdCustomer/getAllCars',
+      url: '/car/getAllCar',
     })
       .then(function (response) {
 
         const array = [];
         response.data.forEach(val => {
           array.push({
-            cars: val.carName,
+            id:val.carId,
+            images:val.carImgs[0].images,
             brand: val.brand,
             model: val.model,
             passengers: val.noOfPassengers,
@@ -35,7 +36,7 @@ export default function LoginCustomerCarView({navigation}) {
             dailyRentalPrice: val.dailyRentalPrice,
             status: val.status,
 
-          })
+          });
 
         });
 
@@ -58,7 +59,8 @@ export default function LoginCustomerCarView({navigation}) {
       data={data}
       renderItem={({ item }) => (
         <LoginCustomercard
-          cars={item.cars}
+          id={item.carId}
+          images={item.images}
           brand={item.brand}
           model={item.model}
           passengers={item.passengers}
@@ -66,6 +68,7 @@ export default function LoginCustomerCarView({navigation}) {
           trMode={item.trMode}
           dailyRentalPrice={item.dailyRentalPrice}
           status={item.status}
+          navigation={navigation}
          
 
         />

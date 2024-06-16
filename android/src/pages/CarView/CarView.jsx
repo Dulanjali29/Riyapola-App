@@ -19,19 +19,20 @@ export default function CarView({navigation}) {
     console.log('dula');
     instance({
       method: 'get',
-      url: '/customer/getAllCars',
+      url: '/car/getAllCar',
     })
       .then(function (response) {
 
         const array = [];
         response.data.forEach(val => {
           array.push({
-            cars: val.carName,
+            id:val.carId,
             brand: val.brand,
             model: val.model,
             passengers: val.noOfPassengers,
             dailyRentalPrice: val.dailyRentalPrice,
             status: val.status,
+            images:val.carImgs[0].images,
 
           })
 
@@ -64,7 +65,8 @@ export default function CarView({navigation}) {
         data={data}
         renderItem={({ item }) => (
           <CarCard
-            cars={item.cars}
+            id={item.id}
+            images={item.images}
             brand={item.brand}
             model={item.model}
             passengers={item.passengers}

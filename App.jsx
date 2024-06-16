@@ -10,8 +10,9 @@ import DrawerNav from './android/src/component/drawerNav/DrawerNav';
 import MainPage from './android/src/pages/MainPage/MainPage';
 import CarCard from './android/src/component/CarCard/CarCard';
 import CarView from './android/src/pages/CarView/CarView';
-
+import ReservationPage from './android/src/pages/ReservationPage/ReservationPage';
 import { PaperProvider } from 'react-native-paper';
+
 
 const Stack = createStackNavigator();
 
@@ -20,15 +21,15 @@ export default function App() {
     <PaperProvider>
     <NavigationContainer>
       <Stack.Navigator>
-  
+      {/* <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}} />  */}
       <Stack.Screen name="MainPage" component={MainPage} options={{headerShown:false}} />
       <Stack.Screen name="CarView" component={CarView} options={{headerShown:false}} />
       <Stack.Screen name="CarCard" component={CarCard} />
       <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />
-      <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}} />
-       
-        <Stack.Screen name="Registration" component={Registration} options={{headerShown:false}} />
      
+      <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}} /> 
+        <Stack.Screen name="Registration" component={Registration} options={{headerShown:false}} />
+        <Stack.Screen name="ReservationPage" component={ReservationPage} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
     </PaperProvider>

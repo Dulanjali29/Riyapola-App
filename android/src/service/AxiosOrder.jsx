@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 
-
+let cacheId=null;
 let cachedToken = null;
 
 const instance = axios.create({
@@ -14,8 +14,11 @@ const instance = axios.create({
     async config => {
       try {
         const token = await AsyncStorage.getItem('stmToken');
+        const cusId=await AsyncStorage.getItem('customer_id');
         cachedToken = token;
+        cacheId =cusId;
         config.headers.Authorization = `Bearer ${cachedToken}`;
+        console.log('id'+cacheId);
       } catch (error) {
         
   
