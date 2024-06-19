@@ -19,9 +19,7 @@ export default function ReservationPage({route,navigation}) {
   const [pickUpLocation, setPickUpLocation] = useState("");
   const[status,setStatus]=useState("Weiting")
 
- 
-
-useEffect(() => {
+    useEffect(() => {
     if (route.params == null) {
       console.log("working!")
 
@@ -33,17 +31,11 @@ useEffect(() => {
 
   }, [route.params]);
 
-
-
-
   const bookThisCar = async() => {
     // console.log('Car ID:', carId);
     const storedCusId = await AsyncStorage.getItem('cusId');
     console.log('Customer ID:', cusId);
-
-    console.log(startDate,startTime);
         instance.post('/reservation/addReservation',{
-
             startDate: startDate,
             startTime: startTime,
             endDate: endDate,

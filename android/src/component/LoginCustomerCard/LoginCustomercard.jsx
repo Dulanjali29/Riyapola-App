@@ -9,6 +9,7 @@ export default function LoginCustomercard({id, images, brand, model, passengers,
     const[selectedCar,setSelectedCar]=useState("")
       
     const reservationNow=async()=>{
+        
         const customerId = await AsyncStorage.getItem('cusId');
         navigation.navigate('ReservationPage',{carId:id,customerId:customerId});
     }
