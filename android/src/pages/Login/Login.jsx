@@ -24,7 +24,7 @@ export default function Login({ navigation }) {
             })
                 .then(function (response) {
                    
-                    if(response.data.token !=null){
+                    if(response.data.token !=null && response.data.cusId!=null){
                         storeData(response);
                     }
                  
@@ -49,9 +49,11 @@ export default function Login({ navigation }) {
     const storeData = async (response) => {
         try {
             await AsyncStorage.setItem('stmToken', response.data.token);
-          
+            await AsyncStorage.setItem('cusId', response.data.cusId);
          const genToken= await AsyncStorage.getItem('stmToken');
                 console.log("Token-"+genToken);
+          const getCusId= await AsyncStorage.getItem('cusId');
+                console.log("CusId-"+getCusId);    
             navigation.navigate('DrawerNav')
         } catch (e) {
             console.log(e,"faild");

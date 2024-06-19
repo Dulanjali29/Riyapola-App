@@ -5,6 +5,7 @@ import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
 import instance from'../../service/AxiosOrder';
 import { ALERT_TYPE, Dialog,AlertNotificationRoot } from 'react-native-alert-notification';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Registration({navigation}) {
     const [firstName, setFirstName] = useState("");
@@ -21,9 +22,11 @@ export default function Registration({navigation}) {
                  password: password,
      
              })
-                 .then(function (response) {
-           
+                 .then(async function (response) {
+                    const customerId = response.data.id;  // Assuming response contains the customer ID
+                    // await AsyncStorage.setItem('customer_id', customerId);
                      console.log(response.data);
+                     
                      Dialog.show({
                         type:ALERT_TYPE.SUCCESS,
                         title:'Success',

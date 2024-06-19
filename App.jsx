@@ -12,6 +12,7 @@ import CarCard from './android/src/component/CarCard/CarCard';
 import CarView from './android/src/pages/CarView/CarView';
 import ReservationPage from './android/src/pages/ReservationPage/ReservationPage';
 import { PaperProvider } from 'react-native-paper';
+import CustomerPersonalDetails from './android/src/pages/CustomerPersonalDetails/CustomerPersonalDetails';
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ export default function App() {
       <Stack.Screen name="DrawerNav" component={DrawerNav} options={{headerShown:false}} /> 
         <Stack.Screen name="Registration" component={Registration} options={{headerShown:false}} />
         <Stack.Screen name="ReservationPage" component={ReservationPage} options={{headerShown:false}} />
+        <Stack.Screen name="CustomerPersonalDetails" component={CustomerPersonalDetails} options={{headerShown:false}} />
       </Stack.Navigator>
     </NavigationContainer>
     </PaperProvider>

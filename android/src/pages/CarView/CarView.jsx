@@ -10,7 +10,8 @@ import instance from '../../service/AxiosOrder';
 export default function CarView({navigation}) {
   const [data, setData] = useState([])
   const [visible, setVisible] = useState(false)
-
+  const[selectedCar,setSelectedCar]=useState()
+  
   useEffect(() => {
     getAllCars();
   }, [])
@@ -25,6 +26,7 @@ export default function CarView({navigation}) {
 
         const array = [];
         response.data.forEach(val => {
+
           array.push({
             id:val.carId,
             brand: val.brand,

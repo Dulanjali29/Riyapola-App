@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import InputText from '../../common/InputText/InputText';
 import MyButton from '../../common/Mybutton/MyButton';
 import Footer from '../../common/Footer/Footer';
@@ -7,37 +7,67 @@ import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-no
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import instance from '../../service/AxiosOrder';
 
-export default function ReservationPage() {
-    
-  const [selectedCar,setSelectedCar]=useState(null)
+export default function ReservationPage({route,navigation}) {
+
+    const { carId } = route.params;
+
+  const [cusId, setCusId] = useState(null);
   const [startDate, setStartDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endDate, setEndDate] = useState("");
   const [endTime, setEndTime] = useState("");
   const [pickUpLocation, setPickUpLocation] = useState("");
-  const [status, setStatus] = useState("waiting");
+  const[status,setStatus]=useState("Weiting")
 
-    const bookThisCar = async()=>{
-      
-        const cusId=await AsyncStorage.getItem(cusId);
+ 
 
-        console.log(cusId);
-        console.log("carId"+selectedCar);
-        instance.post('reservation/addReservation',{
+useEffect(() => {
+    if (route.params == null) {
+      console.log("working!")
+
+    }
+    else {
+      const  cusId  = route.params; // Access passed car object
+      setCusId(cusId);
+    }
+
+  }, [route.params]);
+
+
+
+
+  const bookThisCar = async() => {
+    // console.log('Car ID:', carId);
+    const storedCusId = await AsyncStorage.getItem('cusId');
+    console.log('Customer ID:', cusId);
+
+    console.log(startDate,startTime);
+        instance.post('/reservation/addReservation',{
+
             startDate: startDate,
             startTime: startTime,
             endDate: endDate,
             endTime: endTime,
-            pickUpLocation: pickUpLocation,
-            carId: selectedCar.id,
-            customer_id: cusId,
+            picUpLocation: pickUpLocation,
+            carId: carId,
+            customer_id: storedCusId,
             status: status
         })
         .then((response)=>{
+           
             console.log(response.data);
+            Dialog.show({
+              type:ALERT_TYPE.SUCCESS,
+              title:'Success',
+              textBody:'Reservation Succes!',
+              button:'close',
+           })
+           navigation.navigate('CustomerPersonalDetails');
+          
         })
         .catch((error)=>{
-            console.log("Error saving Reservation",error);
+            console.log("Error saving Reservation", error);
+        
         });
     }
   return (

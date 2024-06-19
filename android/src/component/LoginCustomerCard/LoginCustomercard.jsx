@@ -2,13 +2,15 @@ import * as React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import { Text, Card, Button } from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function LoginCustomercard({ images, brand, model, passengers, fueltype, trMode, dailyRentalPrice, selectedCar,status, navigation }) {
-   
-
-    const reservationNow=()=>{
-       
-        navigation.navigate('ReservationPage');
+export default function LoginCustomercard({id, images, brand, model, passengers, fueltype, trMode, dailyRentalPrice,status, navigation }) {
+    const[selectedCar,setSelectedCar]=useState("")
+      
+    const reservationNow=async()=>{
+        const customerId = await AsyncStorage.getItem('cusId');
+        navigation.navigate('ReservationPage',{carId:id,customerId:customerId});
     }
     return (
         <ScrollView contentContainerStyle={styles.container}>

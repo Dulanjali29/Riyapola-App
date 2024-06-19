@@ -10,7 +10,7 @@ import instance from '../../service/AxiosOrder';
 export default function LoginCustomerCarView({navigation}) {
   const [data, setData] = useState([])
   const [visible, setVisible] = useState(false)
-  const[selectedCar,setSelectedCar]=useState(null)
+ 
   useEffect(() => {
     getAllCars();
   }, [])
@@ -59,7 +59,7 @@ export default function LoginCustomerCarView({navigation}) {
       data={data}
       renderItem={({ item }) => (
         <LoginCustomercard
-          id={item.carId}
+          id={item.id}
           images={item.images}
           brand={item.brand}
           model={item.model}
