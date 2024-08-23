@@ -7,31 +7,14 @@ import { ALERT_TYPE, Dialog, AlertNotificationRoot } from 'react-native-alert-no
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import instance from '../../service/AxiosOrder';
 
-export default function CustomerPersonalDetails(route) {
+export default function CustomerPersonalDetails({navigation}) {
 
     const [nic,setNic]=useState("");
     const [address,setAddress]=useState("");
     const [email,setEmail]=useState("");
     const [contact,setContact]=useState("");
 
-    // const save=async()=>{
-    //     const storedCusId = await AsyncStorage.getItem('cusId');
-    //     console.log('Customer ID:', storedCusId);
-
-    //     instance.put('/customer/customerUpdateById/'+storedCusId,{
-    //        nic:nic,
-    //        address:address,
-    //        email:email,
-    //        contact:contact 
-
-    //     })
-    //     .then((response)=>{
-    //         console.log(response.data);
-    //     })
-    //     .catch((error)=>{
-    //         console.log("Error saving customer details", error);
-    //     })
-    // }
+   
     const save = async () => {
         try {
             const storedCusId = await AsyncStorage.getItem('cusId');
@@ -44,7 +27,7 @@ export default function CustomerPersonalDetails(route) {
                 email: email,
                 contact: contact
             });
-
+   
             console.log(response.data);
             Dialog.show({
                 type: ALERT_TYPE.SUCCESS,
@@ -52,7 +35,7 @@ export default function CustomerPersonalDetails(route) {
                 textBody: 'Customer details updated successfully!',
                 button:'close',
             });
-            navigation.navigate('CustomerPersonalDetails');
+            navigation.navigate('DrawerNav');
         } catch (error) {
             console.error("Error saving customer details", error);
             Dialog.show({
@@ -68,7 +51,7 @@ export default function CustomerPersonalDetails(route) {
     
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.overlay}>
-          <Text style={styles.header}>Booking Details</Text>
+          <Text style={styles.header}>Customer Details</Text>
           <InputText
             style={styles.input}
             value={nic}

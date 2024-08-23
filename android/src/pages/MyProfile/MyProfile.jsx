@@ -15,46 +15,79 @@ export default function MyProfile({ navigation }) {
   const [contact, setContact] = useState("");
   const [email, setEmail] = useState("");
 
-  const update = () => {
-    if (firstName && lastName && nic && address && contact && email != null) {
-      instance.put('/customer/customerUpdateById', {
-        firstName: firstName,
-        lastName: lastName,
-        nic: nic,
-        address: address,
-        contact: contact,
-        email: email,
+  const update =async () => {
+    // if (firstName && lastName && nic && address && contact && email != null) {
+    //   instance.put('/customer/customerProfileUpdateById', {
+    //     firstName: firstName,
+    //     lastName: lastName,
+    //     nic: nic,
+    //     address: address,
+    //     contact: contact,
+    //     email: email,
 
-      })
-        .then(function (response) {
+    //   })
+    //     .then(function (response) {
 
-          Dialog.show({
-            type: ALERT_TYPE.SUCCESS,
-            title: 'Success',
-            textBody: 'update Succes!',
-            button: 'close',
-          })
+    //       Dialog.show({
+    //         type: ALERT_TYPE.SUCCESS,
+    //         title: 'Success',
+    //         textBody: 'update Succes!',
+    //         button: 'close',
+    //       })
            
 
-        })
-        .catch(function (error) {
-          Dialog.show({
-            type: ALERT_TYPE.WARNING,
-            title: 'Warning!',
-            textBody: 'Update Failed!',
-            button: 'close',
-          })
-          console.log(error);
-        })
-    } else {
+    //     })
+    //     .catch(function (error) {
+    //       Dialog.show({
+    //         type: ALERT_TYPE.WARNING,
+    //         title: 'Warning!',
+    //         textBody: 'Update Failed!',
+    //         button: 'close',
+    //       })
+    //       console.log(error);
+    //     })
+    // } else {
+    //   Dialog.show({
+    //     type: ALERT_TYPE.WARNING,
+    //     title: 'Warning!',
+    //     textBody: 'plese fill all data!',
+    //     button: 'close',
+    //   })
+    // }
+    try {
+      const storedCusId = await AsyncStorage.getItem('cusId');
+      console.log('Customer ID:', storedCusId);
+ if (firstName && lastName && nic && address && contact && email != null) {
+      const response = await instance.put(`/customer/customerProfileUpdateById/${storedCusId}`, {
+          customer_id:storedCusId,
+          firstName: firstName,
+          lastName: lastName,
+          nic: nic,
+          address: address,
+          contact: contact,
+          email: email,
+      });
+
+      console.log(response.data);
       Dialog.show({
-        type: ALERT_TYPE.WARNING,
-        title: 'Warning!',
-        textBody: 'plese fill all data!',
-        button: 'close',
-      })
-    }
+          type: ALERT_TYPE.SUCCESS,
+          title: 'Success',
+          textBody: 'Customer details updated successfully!',
+          button:'close',
+      });
+      navigation.navigate('DrawerNav');
+  }else{
+
+  } 
+ } catch (error) {
+      console.error("Error saving customer details", error);
+      Dialog.show({
+          type: ALERT_TYPE.DANGER,
+          title: 'Error',
+          textBody: 'Failed to update customer details.',
+      });
   }
+}
   useEffect(() => {
     getCustomerById();
   }, [])

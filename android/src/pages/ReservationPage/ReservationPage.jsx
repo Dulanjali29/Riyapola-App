@@ -62,6 +62,7 @@ export default function ReservationPage({route,navigation}) {
         
         });
     }
+
   return (
     
       <ScrollView contentContainerStyle={styles.container}>
@@ -100,7 +101,7 @@ export default function ReservationPage({route,navigation}) {
           <AlertNotificationRoot>
             <MyButton
               style={styles.button}
-              text="Book Car"
+              text="Reservation"
               textColor="white"
               buttonColor="#673147"
               onPress={bookThisCar}

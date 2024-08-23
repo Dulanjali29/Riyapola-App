@@ -8,8 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function LoginCustomercard({id, images, brand, model, passengers, fueltype, trMode, dailyRentalPrice,status, navigation }) {
     const[selectedCar,setSelectedCar]=useState("")
       
-    const reservationNow=async()=>{
-        
+    const addToCart=async()=>{
+
         const customerId = await AsyncStorage.getItem('cusId');
         navigation.navigate('ReservationPage',{carId:id,customerId:customerId});
     }
@@ -30,11 +30,11 @@ export default function LoginCustomercard({id, images, brand, model, passengers,
                 </View>
                 <Button
                     mode="contained"
-                    onPress={reservationNow}
+                    onPress={addToCart}
                     style={styles.button}
                     labelStyle={styles.buttonLabel}
                 >
-                    Reservation Now
+                    Add to Cart
                 </Button>
             </Card.Content>
         </Card>
